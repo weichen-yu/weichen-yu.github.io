@@ -23,7 +23,28 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<title>Homepage</title>
 		<style>
-				img{ vertical-align: middle;}</style>
+				img{ vertical-align: middle;}
+				.paper{
+					display:flex;
+					gap:15px;
+					align-items:center;
+				}
+				.paper .pimg{
+					float:none !important;
+					margin-bottom:0 !important;
+					position:static !important;
+					top:auto !important;
+				}
+				.paper .pcontent{
+					flex:1;
+				}
+				.paper .pcontent > div{
+					margin-left:0 !important;
+				}
+				.paper .pvenue p{
+					margin:0;
+				}
+		</style>
 	</head>
 	<body class="is-preload">
 
@@ -72,7 +93,7 @@
 								<ul class="links">
 									<li>
 										<h3>Works</h3>
-											<a href="#nnl">Publication</a>
+											<a href="#nnl">Research</a>
 											<a href="#vln">Challenge</a>
 										
 									</li>
@@ -105,8 +126,7 @@
 									</div>
 								</header>
 							<!--<a href="single.html" class="image featured"><img src="images/pic01.jpg" alt="" /></a>-->
-								<p>I'm currently a second-year PhD student at CMU ECE</a>, where I have the privilege to have <a href='https://mattfredrikson.com/'>Matt Fredrikson</a> as my advisor.
-								
+								<p>I'm currently a third-year PhD student at CMU ECE</a>, where I have the privilege to work with <a href='https://mattfredrikson.com/'>Prof. Matt Fredrikson</a>. 
 								<p>Previously I'm a master student at  <a href='http://www.ia.cas.cn/'>Institute of Automation, Chinese Academy of Sciences</a>, working with <a href='https://scholar.google.com/citations?user=8kzzUboAAAAJ&hl=zh-CN'> Prof. Liang Wang</a> and <a href='https://yanrockhuang.github.io/'> Prof. Yan Huang</a>. 
 								<br \>Before this, I recieved my bachelor's degree from <a href="https://english.ucas.ac.cn/">University of Chinese Academy of Sciences (UCAS)</a>. I also had a good time at the <a href="https://eecs.berkeley.edu">EECS, University of California, Berkeley</a>.</p>
 								<p>I'm fancinated in robustness / attack / defenses in LLM/MLLM/Gen models.</p>
@@ -124,7 +144,7 @@
 							<article class="post">
 								<header>
 									<div class="title" id="nnl">
-										<h2>Publication</h2>
+										<h2>Research</h2>
 										Check the full publication list at 
 										[<a href="https://scholar.google.com/citations?hl=en&view_op=list_works&gmla=AJsN-F6p2LC4d-FUaQCCGWA6tEmRGO4fdpNBaoAby59H5yiBFaXXTyVNpAZSBAiGCAAHN9ukVc31-WH-Vz9aj4CoGnhwm9vWlkKbVam5NH-24VNONXVjpPw&user=LeCleC4AAAAJ" target="_blank" rel="noopener">Google Scholar</a>]
 										
@@ -134,59 +154,101 @@
 										<a href="#" class="author"><span class="name">Jane Doe</span><img src="images/avatar.jpg" alt="" /></a>
 									</div> -->
 									<div class="meta">
-										<time class="published" datetime="2015-11-01">06/2022</time>
+										<time class="published" datetime="2015-11-01">06/2025</time>
 								
 									</div>
 								</header>
 
 								<p> </p>
+								<h3 style="margin:0 0 0.6em 0;">LLM Generated Code Security</h3>
+								<p> </p>
 								<div class="paper" style="clear:left;">
 									<div class="pimg" style="float:left;margin-bottom:30px;padding-left:3px;border-bottom:solid 1px #EEE;box-shadow:0 0px 2px">
-										<img src="images/visualization.jpg" width="300" height="150" >
+										<img src="images/mol.pdf.png" width="300" height="150" >
 									</div>
-									<div class="ptitle" style="padding:1px;margin-left:315px;">
-										Is Your Text-to-Image Model Robust to Caption Noise? 
+									<div class="pcontent">
+<div class="ptitle" style="padding:1px;margin-left:315px;">
+		A Mixture of Linear Corrections Generates Secure Code.
 									</div>
 									<div class="pauthors" style="padding:1px;margin-left:315px;">
-										<b>Weichen Yu</b>, Ziyan Yang, Shanchuan Lin, Qi Zhao, Jianyi Wang, Liangke Gui, Matt Fredrikson, Lu Jiang.
+										<b>Weichen Yu</b>, Ravi Mangal, Terry Zhuo, Matt Fredrikson, Corina S Pasareanu.
 									</div>
 									<div class="pvenue" style="padding:1px;margin-left:315px;">
-										
 										<p>
-										[<a href="https://arxiv.org/abs/2412.19531" target="_blank" rel="noopener">paper</a>]
+										 [<a href="https://arxiv.org/pdf/2507.09508" target="_blank" rel="noopener">paper</a>]
 										</p>
+									</div>
+									<div class="ptldr" style="padding:1px;margin-left:315px;margin-top:-6px;">
+										<b>TL;DR: </b>  Using a bank of steering vectors to generate secure code.
 									</div>
 								</div>
 								<p> </p>
 							    <p> </p>
 
 								<p> </p>
+</div>	
+								<p> </p>
+								<div class="paper" style="clear:left;">
+									<div class="pimg" style="float:left;margin-bottom:30px;padding-left:3px;border-bottom:solid 1px #EEE;box-shadow:0 0px 2px">
+										<img src="images/privcode.pdf.png" width="300" height="150" >
+									</div>
+									<div class="pcontent">
+<div class="ptitle" style="padding:1px;margin-left:315px;">
+										PrivCode: When Code Generation Meets Differential Privacy
+									</div>
+									<div class="pauthors" style="padding:1px;margin-left:315px;">
+										Zheng Liu, Chen Gong, Terry Yue Zhuo, Kecen Li, <b>Weichen Yu</b>, Matt Fredrikson, Tianhao Wang.
+									</div>
+									<div class="pvenue" style="padding:1px;margin-left:315px;">
+										<p>
+										NDSS 2026 [<a href="https://arxiv.org/pdf/2512.05459" target="_blank" rel="noopener">paper</a>]
+										</p>
+									</div>
+									<div class="ptldr" style="padding:1px;margin-left:315px;margin-top:-6px;">
+										<b>TL;DR: </b>  Differentially private code generation with theoretical guarantees for protecting sensitive code.
+									</div>
+								</div>
+</div>
+								<p> </p>
+							    <p> </p>
+
+								
+							    <p> </p>
+
+								<p> </p>
+								<h3 style="margin:0 0 0.6em 0;">LLM / Agent Jailbreak</h3>
+								<p> </p>
 								<div class="paper" style="clear:left;">
 									<div class="pimg" style="float:left;margin-bottom:30px;padding-left:3px;border-bottom:solid 1px #EEE;box-shadow:0 0px 2px">
 										<img src="images/threatmodel.jpg" width="300" height="150" >
 									</div>
-									<div class="ptitle" style="padding:1px;margin-left:315px;">
+									<div class="pcontent">
+<div class="ptitle" style="padding:1px;margin-left:315px;">
 										Infecting LLM Agents via Generalizable Adversarial Attack
 									</div>
 									<div class="pauthors" style="padding:1px;margin-left:315px;">
 										<b>Weichen Yu</b>, Kai Hu, Tianyu Pang, Chao Du, Min Lin, Matt Fredrikson.
 									</div>
 									<div class="pvenue" style="padding:1px;margin-left:315px;">
-										NeurIPS 2024 RedTeaming Workshop (Oral)
 										<p>
-										[<a href="https://openreview.net/forum?id=udsmFGMwlp" target="_blank" rel="noopener">paper</a>]
+										NeurIPS 2024 RedTeaming Workshop <b>(Oral)</b> | COLM 2025.  [<a href="https://openreview.net/forum?id=udsmFGMwlp" target="_blank" rel="noopener">paper</a>]
 										</p>
 									</div>
+									<div class="ptldr" style="padding:1px;margin-left:315px;margin-top:-6px;">
+										<b>TL;DR</b> : With one intervention, let one malicious LLM agent compromise a group of malicious LLM agents.
+									</div>
 								</div>
+</div>
 								<p> </p>
 							    <p> </p>
 
-								<p> </p>
+								
 								<div class="paper" style="clear:left;">
 									<div class="pimg" style="float:left;margin-bottom:30px;padding-left:3px;border-bottom:solid 1px #EEE;box-shadow:0 0px 2px">
 										<img src="images/jailbreak_eg.png" width="300" height="180" >
 									</div>
-									<div class="ptitle" style="padding:1px;margin-left:315px;">
+									<div class="pcontent">
+<div class="ptitle" style="padding:1px;margin-left:315px;">
 										Efficient LLM Jailbreak via Adaptive Dense-to-sparse Constrained Optimization
 									</div>
 									<div class="pauthors" style="padding:1px;margin-left:315px;">
@@ -199,37 +261,120 @@
 										[<a href="https://github.com/hukkai/adc_llm_attack" target="_blank" rel="noopener">project</a>]
 										</p>
 									</div>
+									<div class="ptldr" style="padding:1px;margin-left:315px;margin-top:-6px;">
+										<b>TL;DR</b>: White-box optimization based LLM jailbreak, which converges faster using dense-to-sparse projection. 
+									</div>
 								</div>
+</div>
 								<p> </p>
 							    <p> </p>
-								
-								  <p> </p>
+								<p> </p>
+								<h3 style="margin:0 0 0.6em 0;">Other LLM / VLM Attacks</h3>
+								<p> </p>
+								<p> </p>
+								<div class="paper" style="clear:left;">
+									<div class="pimg" style="float:left;margin-bottom:30px;padding-left:3px;border-bottom:solid 1px #EEE;box-shadow:0 0px 2px">
+										<img src="images/agent_trojan.pdf.png" width="300" height="200" >
+									</div>
+									<div class="pcontent">
+<div class="ptitle" style="padding:1px;margin-left:315px;">
+	The Trojan in the Vocabulary: Stealthy Sabotage of LLM Composition. 
+									</div>
+									<div class="pauthors" style="padding:1px;margin-left:315px;">
+										Xiaoze Liu, <b>Weichen Yu</b>, Matt Fredrikson, Xiaoqian Wang, Jing Gao.
+									</div>
+									<div class="pvenue" style="padding:1px;margin-left:315px;">
+										<p>
+										[<a href="https://arxiv.org/pdf/2601.00065" target="_blank" rel="noopener">paper</a>]
+										</p>
+									</div>
+									<div class="ptldr" style="padding:1px;margin-left:315px;margin-top:-6px;">
+										<b>TL;DR:</b> In model merging, when doing tokenizer transplant, we can inject "breaker tokens" into the merged model while preserving the original model.
+									</div>
+								</div>
+</div>
+								<p> </p>
+								<p> </p>	
+								<div class="paper" style="clear:left;">
+									<div class="pimg" style="float:left;margin-bottom:30px;padding-left:3px;border-bottom:solid 1px #EEE;box-shadow:0 0px 2px">
+										<img src="images/vlm_adv.png" width="300" height="200" >
+									</div>
+									<div class="pcontent">
+<div class="ptitle" style="padding:1px;margin-left:315px;">
+	Transferable adversarial attacks on black-box vision-language models
+									</div>
+									<div class="pauthors" style="padding:1px;margin-left:315px;">
+										Kai Hu, <b>Weichen Yu</b>, Li Zhang, Alexander Robey, Andy Zou, Chengming Xu, Haoqi Hu, Matt Fredrikson
+									</div>
+									<div class="pvenue" style="padding:1px;margin-left:315px;">
+										<p>
+										[<a href="https://arxiv.org/pdf/2505.01050" target="_blank" rel="noopener">paper</a>]
+										</p>
+									</div>
+									<div class="ptldr" style="padding:1px;margin-left:315px;margin-top:-6px;">
+										<b>TL;DR:</b> Black-box adversarial attacks on vision-language models, successfully breaks GPT, Claude, etc.
+									</div>
+								</div>
+</div>
+								<p> </p>
+							    <p> </p>	
 								<div class="paper" style="clear:left;">
 									<div class="pimg" style="float:left;margin-bottom:30px;padding-left:3px;border-bottom:solid 1px #EEE;box-shadow:0 0px 2px">
 										<img src="images/lm_intro_6.jpg" width="300" height="200" >
 									</div>
-									<div class="ptitle" style="padding:1px;margin-left:315px;">
+									<div class="pcontent">
+<div class="ptitle" style="padding:1px;margin-left:315px;">
 										Bag of Tricks for Training Data Extraction from Language Models. 
 									</div>
 									<div class="pauthors" style="padding:1px;margin-left:315px;">
 										<b>Weichen Yu</b>, Tianyu Pang, Qian Liu, Chao Du, Bingyi Kang, Yan Huang, Min Lin, Shuicheng Yan.
 									</div>
 									<div class="pvenue" style="padding:1px;margin-left:315px;">
-										International Conference on Machine Learning (ICML), 2023.
 										<p>
-										[<a href="https://arxiv.org/abs/2302.04460" target="_blank" rel="noopener">paper</a>]
-										[<a href="https://github.com/weichen-yu/LM-Extraction/" target="_blank" rel="noopener">project</a>]
+										International Conference on Machine Learning (ICML), 2023. | [<a href="https://arxiv.org/abs/2302.04460" target="_blank" rel="noopener">paper</a>] [<a href="https://github.com/weichen-yu/LM-Extraction/" target="_blank" rel="noopener">project</a>]
 										</p>
 									</div>
+									<div class="ptldr" style="padding:1px;margin-left:315px;margin-top:-6px;">
+										<b>TL;DR:</b> Extract training data from language models.
+									</div>
 								</div>
+</div>
 								<p> </p>
 							    <p> </p>
+								<p> </p>
+								<p> </p>
+								<h3 style="margin:0 0 0.6em 0;">Computer Vision: Robustness</h3>
+								<p> </p>
+
+								<div class="paper" style="clear:left;">
+									<div class="pimg" style="float:left;margin-bottom:30px;padding-left:3px;border-bottom:solid 1px #EEE;box-shadow:0 0px 2px">
+										<img src="images/visualization.jpg" width="300" height="150" >
+									</div>
+									<div class="pcontent">
+<div class="ptitle" style="padding:1px;margin-left:315px;">
+										Is Your Text-to-Image Model Robust to Caption Noise? 
+									</div>
+									<div class="pauthors" style="padding:1px;margin-left:315px;">
+										<b>Weichen Yu</b>, Ziyan Yang, Shanchuan Lin, Qi Zhao, Jianyi Wang, Liangke Gui, Matt Fredrikson, Lu Jiang.
+									</div>
+									<div class="pvenue" style="padding:1px;margin-left:315px;">
+										<p>
+										CVPR AI4C Workshop <b>(Oral)</b> [<a href="https://arxiv.org/abs/2412.19531" target="_blank" rel="noopener">paper</a>]
+										</p>
+									</div>
+									<div class="ptldr" style="padding:1px;margin-left:315px;margin-top:-6px;">
+										<b>TL;DR: </b>  Address the noise (hallucination) in VLM generated captions when training text-to-image models.
+									</div>
+								</div>
+</div>
+								<p> </p>
 
 								<div class="paper" style="clear:left;">
 									<div class="pimg" style="float:left;margin-bottom:10px;padding-left:3px;border-bottom:solid 1px #EEE;box-shadow:0 0px 2px">
 										<img src="images/intro_mm.jpg" width="300" >
 									</div>
-									<div class="ptitle" style="padding:1px;margin-left:315px;">
+									<div class="pcontent">
+<div class="ptitle" style="padding:1px;margin-left:315px;">
 										Generalized Inter-class Loss for Gait Recognition. 
 									</div>
 									<div class="pauthors" style="padding:1px;margin-left:315px;">
@@ -243,27 +388,35 @@
 										
 										</p>
 									</div>
+									<div class="ptldr" style="padding:1px;margin-left:315px;margin-top:-6px;">
+										<b>TL;DR:</b> Loss design for shaping a more robust embedding space for gait recognition.
+									</div>
 								  </div>
+</div>
 								  <p> </p>
 								  <p> </p>
 								  <div class="paper" style="clear:left;">
 									<div class="pimg" style="float:left;margin-bottom:10px;padding-left:3px;border-bottom:solid 1px #EEE;box-shadow:0 0px 2px">
 										<img src="images\co-teaching.png" width="300" height="140" >
 									</div>
-									<div class="ptitle" style="padding:1px;margin-left:315px;">
+									<div class="pcontent">
+<div class="ptitle" style="padding:1px;margin-left:315px;">
 										CNTN: Cyclic Noise-Tolerant Network.
 									</div>
 									<div class="pauthors" style="padding:1px;margin-left:315px;">
 										<b>Weichen Yu</b>, Hongyuan Yu, Yan Huang, Chunshui Cao, Liang Wang.
 									</div>
-									<div class="pvenue" style="padding:1px;margin-left:315px;">
-										(under review)
+									<div class="pvenue" style="padding:1px;margin-left:315px;">			
 										<p>
 										[<a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=LeCleC4AAAAJ&citation_for_view=LeCleC4AAAAJ:u-x6o8ySG0sC" target="_blank" rel="noopener">paper</a>]
 										<!--[<a href="" target="_blank" rel="noopener">project</a>]-->
 										</p>
 									</div>
+									<div class="ptldr" style="padding:1px;margin-left:315px;margin-top:-6px;">
+										<b>TL;DR:</b> Algorithm design for video recognition in the presence of noise.
+									</div>
 								  </div>
+</div>
 								  <p>  </p>
 								  <p>  </p>
 
@@ -271,7 +424,8 @@
 									<div class="pimg" style="float:left;margin-bottom:10px;padding-left:3px;border-bottom:solid 1px #EEE;box-shadow:0 0px 2px">
 										<img src="images\trafficforecasting_model.png" width="300" height="200" >
 									</div>
-									<div class="ptitle" style="padding:1px;margin-left:315px;">
+									<div class="pcontent">
+<div class="ptitle" style="padding:1px;margin-left:315px;">
 										Regularized Graph Structure Learning with Semantic Knowledge for Multi-variates Time-Series Forecasting.
 									</div>
 									<div class="pauthors" style="padding:1px;margin-left:315px;">
@@ -284,28 +438,89 @@
 										[<a href="https://github.com/alipay/RGSL.git" target="_blank" rel="noopener">project</a>]
 										</p>
 									</div>
+									<div class="ptldr" style="padding:1px;margin-left:315px;margin-top:-6px;">
+										<b>TL;DR:</b> 
+									</div>
 								  </div>
+</div>
 								  <p> </p>
 
 									<div class="paper" style="clear:left;">
 									<div class="pimg" style="float:left;margin-bottom:-10px;padding-left:3px;border-bottom:solid 1px #EEE;box-shadow:0 0px 2px">
 										<img src="images/causal.png" width="300" >
 									</div>
-									<div class="ptitle" style="padding:1px;margin-left:315px;">
+									<div class="pcontent">
+<div class="ptitle" style="padding:1px;margin-left:315px;">
 										Deconfounded Noisy Labels Learning.
 									</div>
 									<div class="pauthors" style="padding:1px;margin-left:315px;">
 										<b>Weichen Yu</b>, Hongyuan Yu, Yan Huang, Jianghao Zhang, Qiang Liu, Liang Wang.
 									</div>
 									<div class="pvenue" style="padding:1px;margin-left:315px;">
-										(under review)
+										<p>   
+											[<a href="https://link.springer.com/article/10.1007/s11263-025-02536-x" target="_blank" rel="noopener">paper</a>]
+										</p>
+										 
 										<!--
 										<p>
 										[<a href="" target="_blank" rel="noopener">paper</a>]
 										[<a href="" target="_blank" rel="noopener">project</a>]
 										</p> -->
 									</div>
+									<div class="ptldr" style="padding:1px;margin-left:315px;margin-top:-6px;">
+										<b>TL;DR:</b> Causal learning for noisy label learning.
+									</div>
 								  </div>
+</div>
+								  <p> </p>
+
+								  <p> </p>
+								  <h3 style="margin:0 0 0.6em 0;">Computer Vision: Performance</h3>
+								  <p> </p>
+								  <div class="paper" style="clear:left;">
+									<div class="pimg" style="float:left;margin-bottom:-10px;padding-left:3px;border-bottom:solid 1px #EEE;box-shadow:0 0px 2px">
+										<img src="images/good.png" width="300" >
+									</div>
+									<div class="pcontent">
+<div class="ptitle" style="padding:1px;margin-left:315px;">
+	GOOD: Training-Free Guided Diffusion Sampling for Out-of-Distribution Detection
+									</div>
+									<div class="pauthors" style="padding:1px;margin-left:315px;">
+										Xin Gao, Jiyao Liu, Guanghao Li, Yueming Lyu, Jianxiong Gao, <b>Weichen Yu</b>, Ningsheng Xu, Liang Wang, Caifeng Shan, Ziwei Liu, Chenyang Si.
+									</div>
+									<div class="pvenue" style="padding:1px;margin-left:315px;">
+										<p>  NeurIPS, 2025 | [<a href="https://arxiv.org/abs/2510.17131" target="_blank" rel="noopener">paper</a>]</p>
+										 
+
+									</div>
+									<div class="ptldr" style="padding:1px;margin-left:315px;margin-top:-6px;">
+										<b>TL;DR:</b> Use off-the-shelf in-distribution (ID) classifier to guide diffusion sampling trajectories towards OOD regions.
+									</div>
+								  </div>
+</div>
+								  <p> </p>
+								  
+								  <div class="paper" style="clear:left;">
+									<div class="pimg" style="float:left;margin-bottom:-10px;padding-left:3px;border-bottom:solid 1px #EEE;box-shadow:0 0px 2px">
+										<img src="images/sample_da.png" width="300" >
+									</div>
+									<div class="pcontent">
+<div class="ptitle" style="padding:1px;margin-left:315px;">
+	Sample-Aware RandAugment
+									</div>
+									<div class="pauthors" style="padding:1px;margin-left:315px;">
+										Anqi Xiao, <b>Weichen Yu</b>, Hongyuan Yu.
+									</div>
+									<div class="pvenue" style="padding:1px;margin-left:315px;">
+										<p>  International Journal of Computer Vision (IJCV), 2025 | [<a href="https://link.springer.com/article/10.1007/s11263-025-02536-x" target="_blank" rel="noopener">paper</a>]</p>
+										 
+
+									</div>
+									<div class="ptldr" style="padding:1px;margin-left:315px;margin-top:-6px;">
+										<b>TL;DR:</b>  An effecitve data augmentation method for automaticaly finding the best data augmentation policies for each sample.
+									</div>
+								  </div>
+</div>
 								  <p> </p>
 								<!--<a href="single.html" class="image featured"><img src="images/pic02.jpg" alt="" /></a>-->
 								
@@ -341,7 +556,8 @@
 									<div class="pimg" style="float:left;margin-bottom:10px;padding-left:3px;border-bottom:solid 1px #EEE;box-shadow:0 0px 2px">
 										<img src="images/ijcai_challenge.png" width="80" >
 									</div>
-									<div class="ptitle" style="padding:1px;margin-left:115px;">
+									<div class="pcontent">
+<div class="ptitle" style="padding:1px;margin-left:115px;">
 										1st Learning and Mining with Noisy Labels Challenge, IJCAI-ECAI 2022.
 										
 									</div>
@@ -350,12 +566,16 @@
 										 [<a href="http://ucsc-real.soe.ucsc.edu:1995/Competition.html" target="_blank" rel="noopener">details</a>]
 										
 									</div>
+									<div class="ptldr" style="padding:1px;margin-left:115px;margin-top:-6px;">
+										<b>TL;DR:</b> 
+									</div>
 									<div class="pauthors" style="padding:1px;margin-left:115px;">
 										<b>Weichen Yu</b>, Hongyuan Yu, Yan Huang, Dong An,
 									Keji He, Zhipeng Zhang, Xiuchuan Li, Liang Wang
 									</div>
 
 								  </div>
+</div>
 								  <p> </p>
 								  <p> </p>
 
@@ -363,7 +583,8 @@
 									<div class="pimg" style="float:left;margin-bottom:10px;padding-left:3px;border-bottom:solid 1px #EEE;box-shadow:0 0px 2px">
 										<img src="images/csig.png" width="80" >
 									</div>
-									<div class="ptitle" style="padding:1px;margin-left:115px;">
+									<div class="pcontent">
+<div class="ptitle" style="padding:1px;margin-left:115px;">
 										REVERIE Challenge 2022.
 										
 									</div>
@@ -372,6 +593,9 @@
 										 [<a href="https://yuankaiqi.github.io/REVERIE_Challenge/challenge_2022.html" target="_blank" rel="noopener">details</a>]
 										
 									</div>
+									<div class="ptldr" style="padding:1px;margin-left:115px;margin-top:-6px;">
+										<b>TL;DR:</b> 
+									</div>
 									<div class="pauthors" style="padding:1px;margin-left:115px;">
 										Dong An, Yifeng Su, Shuanglin Sima, Hongyuan Yu, <b>Weichen Yu</b>, Yan Huang
 									</div>
@@ -379,11 +603,13 @@
 								<p> </p>
 								<p> </p>
 								  </div>
+</div>
 								  <div class="paper" style="clear:left;">
 									<div class="pimg" style="float:left;margin-bottom:20px;position:relative;top:30px;border-bottom:solid 1px #EEE;box-shadow:0 0px 2px">
 										<img src="images/lmextraction.jpg" width="80" >
 									</div>
-									<div class="ptitle" style="padding:1px;margin-left:115px;">
+									<div class="pcontent">
+<div class="ptitle" style="padding:1px;margin-left:115px;">
 										Training Data Extraction Challenge
 										
 									</div>
@@ -391,6 +617,9 @@
 										<font color="#FF0000">runner-up</font>. Invited to give a talk in <a href="https://satml.org/">SaTML</a>.
 										 [<a href="https://github.com/google-research/lm-extraction-benchmark/tree/master" target="_blank" rel="noopener">details</a>]
 										
+									</div>
+									<div class="ptldr" style="padding:1px;margin-left:115px;margin-top:-6px;">
+										<b>TL;DR:</b> 
 									</div>
 									<div class="pauthors" style="padding:1px;margin-left:115px;">
 										<b>Weichen Yu</b>, Tianyu Pang, Qian Liu, Chao Du, Bingyi Kang, Yan Huang, Min Lin, Shuicheng Yan.
@@ -782,13 +1011,14 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 							</ul>
 
 					</div>
+</div>
 
 				<!-- Sidebar -->
 					<section id="sidebar">
 
 						<!-- Intro -->
 							<section id="intro">
-								<img src="images/ywc000.jpg" width="60%" style="margin-left: 40px;"/> 
+								<img src="images/weichen_1.jpg" width="60%" style="margin-left: 40px;"/> 
 								<header>
 									<h2>Weichen Yu</h2>
 									<p>wyu3@andrew.cmu.edu</p>
