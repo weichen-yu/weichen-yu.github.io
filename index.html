@@ -44,6 +44,16 @@
 				.paper .pvenue p{
 					margin:0;
 				}
+				.pub-controls{
+					display:flex;
+					gap:0.6em;
+					margin:0.2em 0 1em 0;
+				}
+				.pub-toggle.is-active{
+					box-shadow: inset 0 0 0 1px #2ebaae;
+					color: #2ebaae !important;
+					background-color: rgba(46, 186, 174, 0.05);
+				}
 		</style>
 	</head>
 	<body class="is-preload">
@@ -158,11 +168,45 @@
 								
 									</div>
 								</header>
+								<div class="pub-controls">
+									<button class="button small pub-toggle is-active" data-view="topic" type="button">By Topic</button>
+									<button class="button small pub-toggle" data-view="time" type="button">By Time</button>
+								</div>
 
+								<div id="research-list-topic">
+									<p> </p>
+								<h3 style="margin:0 0 0.6em 0;">LLM / Agent performance</h3>
+								<p> </p>
+								<div class="paper" data-topic="LLM Agent performance" data-date="2026-01" style="clear:left;">
+									<div class="pimg" style="float:left;margin-bottom:30px;padding-left:3px;border-bottom:solid 1px #EEE;box-shadow:0 0px 2px">
+										<img src="images/agentark.png" width="300" height="150" >
+									</div>
+									<div class="pcontent">
+<div class="ptitle" style="padding:1px;margin-left:315px;">
+	AgentArk: Distilling Multi-Agent Intelligence into a Single LLM Agent
+									</div>
+									<div class="pauthors" style="padding:1px;margin-left:315px;">
+										Yinyi Luo, Yiqiao Jin, <b>Weichen Yu</b>, Mengqi Zhang, Srijan Kumar, Xiaoxiao Li, Weijie Xu, Xin Chen, Jindong Wang.
+									</div>
+									<div class="pvenue" style="padding:1px;margin-left:315px;">
+										<p>
+										 [<a href="https://arxiv.org/abs/2602.03955" target="_blank" rel="noopener">paper</a>] [<a href="https://github.com/AIFrontierLab/AgentArk" target="_blank" rel="noopener">project</a>] 
+										</p>
+									</div>
+									<div class="ptldr" style="padding:1px;margin-left:315px;margin-top:-6px;">
+										<b>TL;DR: </b>  Distill a group of agents knowledge into a single agent.
+									</div>
+								</div>
+								<p> </p>
+							    <p> </p>
+
+								<p> </p>
+</div>	
+								<p> </p>
 								<p> </p>
 								<h3 style="margin:0 0 0.6em 0;">LLM Generated Code Security</h3>
 								<p> </p>
-								<div class="paper" style="clear:left;">
+								<div class="paper" data-topic="LLM Generated Code Security" data-date="2025-07" style="clear:left;">
 									<div class="pimg" style="float:left;margin-bottom:30px;padding-left:3px;border-bottom:solid 1px #EEE;box-shadow:0 0px 2px">
 										<img src="images/mol.pdf.png" width="300" height="150" >
 									</div>
@@ -188,7 +232,7 @@
 								<p> </p>
 </div>	
 								<p> </p>
-								<div class="paper" style="clear:left;">
+								<div class="paper" data-topic="LLM Generated Code Security" data-date="2025-12" style="clear:left;">
 									<div class="pimg" style="float:left;margin-bottom:30px;padding-left:3px;border-bottom:solid 1px #EEE;box-shadow:0 0px 2px">
 										<img src="images/privcode.pdf.png" width="300" height="150" >
 									</div>
@@ -218,7 +262,7 @@
 								<p> </p>
 								<h3 style="margin:0 0 0.6em 0;">LLM / Agent Jailbreak</h3>
 								<p> </p>
-								<div class="paper" style="clear:left;">
+								<div class="paper" data-topic="LLM / Agent Jailbreak" data-date="2024-12" style="clear:left;">
 									<div class="pimg" style="float:left;margin-bottom:30px;padding-left:3px;border-bottom:solid 1px #EEE;box-shadow:0 0px 2px">
 										<img src="images/threatmodel.jpg" width="300" height="150" >
 									</div>
@@ -243,7 +287,7 @@
 							    <p> </p>
 
 								
-								<div class="paper" style="clear:left;">
+								<div class="paper" data-topic="LLM / Agent Jailbreak" data-date="2024-05" style="clear:left;">
 									<div class="pimg" style="float:left;margin-bottom:30px;padding-left:3px;border-bottom:solid 1px #EEE;box-shadow:0 0px 2px">
 										<img src="images/jailbreak_eg.png" width="300" height="180" >
 									</div>
@@ -269,10 +313,10 @@
 								<p> </p>
 							    <p> </p>
 								<p> </p>
-								<h3 style="margin:0 0 0.6em 0;">Other LLM / VLM Attacks</h3>
+								<h3 style="margin:0 0 0.6em 0;">Other LLM / VLM Safety</h3>
 								<p> </p>
 								<p> </p>
-								<div class="paper" style="clear:left;">
+								<div class="paper" data-topic="Other LLM / VLM Attacks" data-date="2026-01" style="clear:left;">
 									<div class="pimg" style="float:left;margin-bottom:30px;padding-left:3px;border-bottom:solid 1px #EEE;box-shadow:0 0px 2px">
 										<img src="images/agent_trojan.pdf.png" width="300" height="200" >
 									</div>
@@ -294,8 +338,31 @@
 								</div>
 </div>
 								<p> </p>
+								<p> </p>
+								<div class="paper" data-topic="Other LLM / VLM Attacks" data-date="2025-06" style="clear:left;">
+									<div class="pimg" style="float:left;margin-bottom:30px;padding-left:3px;border-bottom:solid 1px #EEE;box-shadow:0 0px 2px">
+										<img src="images/saferbench.png" width="300" height="200" >
+									</div>
+									<div class="pcontent">
+<div class="ptitle" style="padding:1px;margin-left:315px;">
+	SafeRBench: A Comprehensive Benchmark for Safety Assessment in Large Reasoning Models
+									</div>
+									<div class="pauthors" style="padding:1px;margin-left:315px;">
+										Xin Gao, Shaohan Yu, Zerui Chen, Yueming Lyu, <b>Weichen Yu</b>, Guanghao Li, Jiyao Liu, Jianxiong Gao, Jian Liang, Ziwei Liu, Chenyang Si
+									</div>
+									<div class="pvenue" style="padding:1px;margin-left:315px;">
+										<p>
+										[<a href="https://arxiv.org/abs/2511.15169" target="_blank" rel="noopener">paper</a>]
+										</p>
+									</div>
+									<div class="ptldr" style="padding:1px;margin-left:315px;margin-top:-6px;">
+										<b>TL;DR:</b> Benchmark for reasoning LLM safety.
+									</div>
+								</div>
+</div>
+								<p> </p>
 								<p> </p>	
-								<div class="paper" style="clear:left;">
+								<div class="paper" data-topic="Other LLM / VLM Attacks" data-date="2025-05" style="clear:left;">
 									<div class="pimg" style="float:left;margin-bottom:30px;padding-left:3px;border-bottom:solid 1px #EEE;box-shadow:0 0px 2px">
 										<img src="images/vlm_adv.png" width="300" height="200" >
 									</div>
@@ -318,7 +385,7 @@
 </div>
 								<p> </p>
 							    <p> </p>	
-								<div class="paper" style="clear:left;">
+								<div class="paper" data-topic="Other LLM / VLM Attacks" data-date="2023-02" style="clear:left;">
 									<div class="pimg" style="float:left;margin-bottom:30px;padding-left:3px;border-bottom:solid 1px #EEE;box-shadow:0 0px 2px">
 										<img src="images/lm_intro_6.jpg" width="300" height="200" >
 									</div>
@@ -346,7 +413,7 @@
 								<h3 style="margin:0 0 0.6em 0;">Computer Vision: Robustness</h3>
 								<p> </p>
 
-								<div class="paper" style="clear:left;">
+								<div class="paper" data-topic="Computer Vision: Robustness" data-date="2024-12" style="clear:left;">
 									<div class="pimg" style="float:left;margin-bottom:30px;padding-left:3px;border-bottom:solid 1px #EEE;box-shadow:0 0px 2px">
 										<img src="images/visualization.jpg" width="300" height="150" >
 									</div>
@@ -369,7 +436,7 @@
 </div>
 								<p> </p>
 
-								<div class="paper" style="clear:left;">
+								<div class="paper" data-topic="Computer Vision: Robustness" data-date="2022-10" style="clear:left;">
 									<div class="pimg" style="float:left;margin-bottom:10px;padding-left:3px;border-bottom:solid 1px #EEE;box-shadow:0 0px 2px">
 										<img src="images/intro_mm.jpg" width="300" >
 									</div>
@@ -395,7 +462,7 @@
 </div>
 								  <p> </p>
 								  <p> </p>
-								  <div class="paper" style="clear:left;">
+								  <div class="paper" data-topic="Computer Vision: Robustness" data-date="2022-01" style="clear:left;">
 									<div class="pimg" style="float:left;margin-bottom:10px;padding-left:3px;border-bottom:solid 1px #EEE;box-shadow:0 0px 2px">
 										<img src="images\co-teaching.png" width="300" height="140" >
 									</div>
@@ -418,34 +485,9 @@
 								  </div>
 </div>
 								  <p>  </p>
-								  <p>  </p>
 
-								  <div class="paper" style="clear:left;">
-									<div class="pimg" style="float:left;margin-bottom:10px;padding-left:3px;border-bottom:solid 1px #EEE;box-shadow:0 0px 2px">
-										<img src="images\trafficforecasting_model.png" width="300" height="200" >
-									</div>
-									<div class="pcontent">
-<div class="ptitle" style="padding:1px;margin-left:315px;">
-										Regularized Graph Structure Learning with Semantic Knowledge for Multi-variates Time-Series Forecasting.
-									</div>
-									<div class="pauthors" style="padding:1px;margin-left:315px;">
-										Hongyuan Yu*, Ting Li *, <b>Weichen Yu*</b>, Jianguo Li, Yan Huang, Liang Wang, Alex Liu.
-									</div>
-									<div class="pvenue" style="padding:1px;margin-left:315px;">
-										International Joint Conference on Artificial Intelligence (IJCAI), 2022. (Oral)
-										<p>
-										[<a href="https://www.ijcai.org/proceedings/2022/0328.pdf" target="_blank" rel="noopener">paper</a>]
-										[<a href="https://github.com/alipay/RGSL.git" target="_blank" rel="noopener">project</a>]
-										</p>
-									</div>
-									<div class="ptldr" style="padding:1px;margin-left:315px;margin-top:-6px;">
-										<b>TL;DR:</b> 
-									</div>
-								  </div>
-</div>
-								  <p> </p>
 
-									<div class="paper" style="clear:left;">
+									<div class="paper" data-topic="Computer Vision: Robustness" data-date="2025-01" style="clear:left;">
 									<div class="pimg" style="float:left;margin-bottom:-10px;padding-left:3px;border-bottom:solid 1px #EEE;box-shadow:0 0px 2px">
 										<img src="images/causal.png" width="300" >
 									</div>
@@ -477,7 +519,7 @@
 								  <p> </p>
 								  <h3 style="margin:0 0 0.6em 0;">Computer Vision: Performance</h3>
 								  <p> </p>
-								  <div class="paper" style="clear:left;">
+								  <div class="paper" data-topic="Computer Vision: Performance" data-date="2025-10" style="clear:left;">
 									<div class="pimg" style="float:left;margin-bottom:-10px;padding-left:3px;border-bottom:solid 1px #EEE;box-shadow:0 0px 2px">
 										<img src="images/good.png" width="300" >
 									</div>
@@ -500,7 +542,7 @@
 </div>
 								  <p> </p>
 								  
-								  <div class="paper" style="clear:left;">
+								  <div class="paper" data-topic="Computer Vision: Performance" data-date="2025-01" style="clear:left;">
 									<div class="pimg" style="float:left;margin-bottom:-10px;padding-left:3px;border-bottom:solid 1px #EEE;box-shadow:0 0px 2px">
 										<img src="images/sample_da.png" width="300" >
 									</div>
@@ -521,8 +563,39 @@
 									</div>
 								  </div>
 </div>
-								  <p> </p>
+								<p> </p>
+								<p> </p>
+								<h3 style="margin:0 0 0.6em 0;">Time Series Forecasting</h3>
+								<p> </p>
+								<p>  </p>
+
+								<div class="paper" data-topic="Computer Vision: Robustness" data-date="2022-07" style="clear:left;">
+								  <div class="pimg" style="float:left;margin-bottom:10px;padding-left:3px;border-bottom:solid 1px #EEE;box-shadow:0 0px 2px">
+									  <img src="images\trafficforecasting_model.png" width="300" height="200" >
+								  </div>
+								  <div class="pcontent">
+<div class="ptitle" style="padding:1px;margin-left:315px;">
+									  Regularized Graph Structure Learning with Semantic Knowledge for Multi-variates Time-Series Forecasting.
+								  </div>
+								  <div class="pauthors" style="padding:1px;margin-left:315px;">
+									  Hongyuan Yu*, Ting Li *, <b>Weichen Yu*</b>, Jianguo Li, Yan Huang, Liang Wang, Alex Liu.
+								  </div>
+								  <div class="pvenue" style="padding:1px;margin-left:315px;">
+									  International Joint Conference on Artificial Intelligence (IJCAI), 2022. (Oral)
+									  <p>
+									  [<a href="https://www.ijcai.org/proceedings/2022/0328.pdf" target="_blank" rel="noopener">paper</a>]
+									  [<a href="https://github.com/alipay/RGSL.git" target="_blank" rel="noopener">project</a>]
+									  </p>
+								  </div>
+								  <div class="ptldr" style="padding:1px;margin-left:315px;margin-top:-6px;">
+									  <b>TL;DR:</b> Graph and Recurrent neural network based model for multi-variates time-series forecasting.
+								  </div>
+								</div>
+</div>
+								<p> </p>
 								<!--<a href="single.html" class="image featured"><img src="images/pic02.jpg" alt="" /></a>-->
+								</div>
+								<div id="research-list-time" style="display:none;"></div>
 								
 								
 								
@@ -1152,6 +1225,56 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+			<script>
+				document.addEventListener('DOMContentLoaded', () => {
+					const topicList = document.getElementById('research-list-topic');
+					const timeList = document.getElementById('research-list-time');
+					if (!topicList || !timeList) return;
+
+					const papers = Array.from(topicList.querySelectorAll('.paper'));
+					const clones = papers.map(p => p.cloneNode(true));
+					const getDate = el => (el.dataset.date || '').trim();
+					const getYear = el => (getDate(el).split('-')[0] || 'Unknown').trim() || 'Unknown';
+					clones.sort((a, b) => {
+						const da = getDate(a) || '0000-00';
+						const db = getDate(b) || '0000-00';
+						return db.localeCompare(da);
+					});
+					let currentYear = null;
+					clones.forEach(c => {
+						const year = getYear(c);
+						if (year !== currentYear) {
+							currentYear = year;
+							const h = document.createElement('h3');
+							h.style.margin = '0 0 0.6em 0';
+							h.textContent = year;
+							timeList.appendChild(h);
+							const spacer = document.createElement('p');
+							spacer.textContent = ' ';
+							timeList.appendChild(spacer);
+						}
+						timeList.appendChild(c);
+						const gap = document.createElement('p');
+						gap.textContent = ' ';
+						timeList.appendChild(gap);
+					});
+
+					const buttons = Array.from(document.querySelectorAll('.pub-toggle'));
+					buttons.forEach(btn => {
+						btn.addEventListener('click', () => {
+							const view = btn.getAttribute('data-view');
+							buttons.forEach(b => b.classList.toggle('is-active', b === btn));
+							if (view === 'time') {
+								topicList.style.display = 'none';
+								timeList.style.display = 'block';
+							} else {
+								timeList.style.display = 'none';
+								topicList.style.display = 'block';
+							}
+						});
+					});
+				});
+			</script>
 
 	</body>
 </html>
