@@ -41,6 +41,39 @@
 				.paper .pvenue p{
 					margin:0;
 				}
+				.about-layout{
+					display:flex;
+					align-items:flex-start;
+					gap:2.5em;
+				}
+				.about-profile{
+					flex:0 0 190px;
+					text-align:center;
+				}
+				.about-profile img{
+					display:block;
+					width:100%;
+					height:auto;
+					margin:0 0 1em 0;
+				}
+				.about-profile h2,
+				.about-profile p{
+					margin-bottom:0.5em;
+				}
+				.about-content{
+					flex:1;
+					min-width:0;
+				}
+				@media screen and (max-width: 736px){
+					.about-layout{
+						flex-direction:column;
+					}
+					.about-profile{
+						width:100%;
+						max-width:190px;
+						margin:0 auto;
+					}
+				}
 				.pub-controls{
 					display:flex;
 					gap:0.6em;
@@ -126,18 +159,27 @@
 
 						<!-- Post -->
 							<article class="post">
-								<header>
-									<div class="title">
-										<h2>About Me</a></h2>
-										<p style="font-size:18px">  </p>
-									</div>
-								</header>
+								<div class="about-layout">
+									<section class="about-profile">
+										<img src="images/photo_id.jpg" alt="Weichen Yu" />
+										<h2>Weichen Yu</h2>
+										<p>wyu3@andrew.cmu.edu</p>
+									</section>
+									<div class="about-content">
+										<header>
+											<div class="title">
+												<h2>About Me</h2>
+												<p style="font-size:18px">  </p>
+											</div>
+										</header>
 							<!--<a href="single.html" class="image featured"><img src="images/pic01.jpg" alt="" /></a>-->
 									<p>I'm currently a third-year PhD student at CMU ECE, where I have the privilege to work with <a href='https://mattfredrikson.com/'>Prof. Matt Fredrikson</a>. I also work closely with <a href="https://www.cylab.cmu.edu/directory/bios/pasareanu-corina.html" target="_blank" rel="noopener">Prof. Corina S. Pasareanu</a>.</p>
 									<p>I have previously interned at Gray Swan, Microsoft Copilot, AWS Agentic AI Lab, ByteDance Seed, and Sea AI Lab. I was glad to work with <a href="https://www.microsoft.com/en-us/research/people/yuhu/" target="_blank" rel="noopener">Yu Hu</a>, <a href="https://scholar.google.com/citations?user=yyK_4zMAAAAJ&hl=en" target="_blank" rel="noopener">Dhananjay Ram</a>, <a href="http://www.lujiang.info/" target="_blank" rel="noopener">Lu Jiang</a>, and <a href="https://scholar.google.com/citations?user=wYDbtFsAAAAJ&hl=en" target="_blank" rel="noopener">Tianyu Pang</a>.</p>
 									<p>Previously, I was a master's student at  <a href='http://www.ia.cas.cn/'>Institute of Automation, Chinese Academy of Sciences</a>, working with <a href='https://scholar.google.com/citations?user=8kzzUboAAAAJ&hl=zh-CN'> Prof. Liang Wang</a> and <a href='https://yanrockhuang.github.io/'> Prof. Yan Huang</a>. 
 								<br \>Before this, I received my bachelor's degree from <a href="https://english.ucas.ac.cn/">University of Chinese Academy of Sciences (UCAS)</a>. I also had a good time at the <a href="https://eecs.berkeley.edu">EECS, University of California, Berkeley</a>.</p>
 								<p>I'm fascinated in robustness / attacks / defenses in LLM/MLLM/Gen models.</p>
+									</div>
+								</div>
 								<!--<footer>
 									<ul class="actions">
 										<li><a href="single.html" class="button large">Continue Reading</a></li>
@@ -1242,17 +1284,6 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 
 				<!-- Sidebar -->
 					<section id="sidebar">
-
-						<!-- Intro -->
-							<section id="intro">
-								<img src="images/weichen_1.jpg" width="60%" style="margin-left: 40px;"/> 
-								<header>
-									<h2>Weichen Yu</h2>
-									<p>wyu3@andrew.cmu.edu</p>
-									
-									
-								</header>
-							</section>
 
 						<!-- Mini Posts -->
 							<section>
