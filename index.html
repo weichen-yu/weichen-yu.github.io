@@ -64,6 +64,66 @@
 					flex:1;
 					min-width:0;
 				}
+				.safety-thought{
+					flex:0 0 260px;
+					width:260px;
+					border:1px solid rgba(160, 160, 160, 0.35);
+					background:#fff;
+					padding:12px;
+				}
+				.safety-thought h3{
+					font-size:0.78em;
+					letter-spacing:0.13em;
+					margin:0 0 10px;
+				}
+				.safety-thought .safety-mixture{
+					position:relative;
+					aspect-ratio:1 / 1;
+					overflow:hidden;
+					background:#101217;
+					border-radius:4px;
+				}
+				.safety-thought .safety-caption{
+					font-size:0.82em;
+					line-height:1.55;
+					margin:12px 0 10px;
+				}
+				.safety-thought .safety-quote{
+					border-left:2px solid #19c6bb;
+					font-size:0.74em;
+					font-style:italic;
+					line-height:1.5;
+					margin:0 0 12px;
+					padding:0 0 0 9px;
+				}
+				.safety-quote cite{
+					display:block;
+					font-style:normal;
+					margin-top:3px;
+				}
+				.safety-thought .safety-legend{
+					list-style:none;
+					margin:0;
+					padding:0;
+					display:grid;
+					grid-template-columns:1fr 1fr;
+					gap:4px 8px;
+					font-size:0.72em;
+					line-height:1.4;
+				}
+				.safety-legend li{padding:0;white-space:nowrap}
+				.safety-legend .swatch{
+					display:inline-block;
+					width:8px;height:8px;
+					margin-right:5px;
+					border-radius:50%;
+					vertical-align:middle;
+				}
+				@media screen and (max-width: 1100px){
+					.about-layout{flex-wrap:wrap}
+					.about-content{flex-basis:calc(100% - 190px - 2.5em)}
+					.safety-thought{margin-left:calc(190px + 2.5em)}
+				}
 				@media screen and (max-width: 736px){
 					.about-layout{
 						flex-direction:column;
@@ -72,6 +132,14 @@
 						width:100%;
 						max-width:190px;
 						margin:0 auto;
+					}
+					.safety-thought{
+						margin:0;
+						width:100%;
+						flex-basis:auto;
+					}
+					.safety-thought .safety-mixture{
+						aspect-ratio:2 / 1;
 					}
 				}
 				.pub-controls{
@@ -177,8 +245,20 @@
 									<p>I have previously interned at Gray Swan, Microsoft Copilot, AWS Agentic AI Lab, ByteDance Seed, and Sea AI Lab. I was glad to work with <a href="https://www.microsoft.com/en-us/research/people/yuhu/" target="_blank" rel="noopener">Yu Hu</a>, <a href="https://scholar.google.com/citations?user=yyK_4zMAAAAJ&hl=en" target="_blank" rel="noopener">Dhananjay Ram</a>, <a href="http://www.lujiang.info/" target="_blank" rel="noopener">Lu Jiang</a>, and <a href="https://scholar.google.com/citations?user=wYDbtFsAAAAJ&hl=en" target="_blank" rel="noopener">Tianyu Pang</a>.</p>
 									<p>Previously, I was a master's student at  <a href='http://www.ia.cas.cn/'>Institute of Automation, Chinese Academy of Sciences</a>, working with <a href='https://scholar.google.com/citations?user=8kzzUboAAAAJ&hl=zh-CN'> Prof. Liang Wang</a> and <a href='https://yanrockhuang.github.io/'> Prof. Yan Huang</a>. 
 								<br \>Before this, I received my bachelor's degree from <a href="https://english.ucas.ac.cn/">University of Chinese Academy of Sciences (UCAS)</a>. I also had a good time at the <a href="https://eecs.berkeley.edu">EECS, University of California, Berkeley</a>.</p>
-								<p>I'm fascinated in robustness / attacks / defenses in LLM/MLLM/Gen models.</p>
+									<p>I'm fascinated in robustness / attacks / defenses in LLM/MLLM/Gen models.</p>
 									</div>
+									<aside class="safety-thought" aria-labelledby="safety-thought-title">
+										<h3 id="safety-thought-title">Thoughts on AI Safety</h3>
+						<div class="safety-mixture" role="img" aria-label="Teal safety mingles with magenta user friction and latency, orange performance, and black unknown space."></div>
+										<p class="safety-caption">Safety is woven through performance, user friction, latency, and the unknown. I explore their edges and the mixtures between them.</p>
+										<blockquote class="safety-quote">“There are more things in heaven and earth, Horatio,<br>Than are dreamt of in your philosophy.”<cite>— Shakespeare, <a href="https://www.folger.edu/explore/shakespeares-works/hamlet/read/" target="_blank" rel="noopener">Hamlet</a></cite></blockquote>
+										<ul class="safety-legend" aria-label="Color key">
+											<li><span class="swatch" style="background:#19c6bb"></span>Safety</li>
+											<li><span class="swatch" style="background:#e51b78"></span>Friction / latency</li>
+											<li><span class="swatch" style="background:#ff8b36"></span>Performance</li>
+											<li><span class="swatch" style="background:#101217"></span>Unknown</li>
+										</ul>
+									</aside>
 								</div>
 								<!--<footer>
 									<ul class="actions">
@@ -1411,7 +1491,19 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+			<script src="assets/js/drop-blob.js"></script>
 			<script>
+				DropBlob('.safety-mixture', {
+					colors: ['#19c6bb', '#e51b78', '#ff8b36', '#101217'],
+					soft: 0.24,
+					scale: 0.9,
+					warp: 0.2,
+					speed: 0.7,
+					grain: 0.025,
+					pull: 0.16,
+					fit: 'contain',
+					zoom: 1.1
+				});
 				document.addEventListener('DOMContentLoaded', () => {
 					const topicList = document.getElementById('research-list-topic');
 					const timeList = document.getElementById('research-list-time');
