@@ -33,9 +33,14 @@ At the end there is a table of when each omission matters.
 OPD says it minimizes the sequence-level reverse KL from the student to the teacher on the student's own rollouts:
 
 $$
-J(\theta) = \mathrm{KL}\big(\pi_\theta(\cdot\mid x)\,\|\,\pi_T(\cdot\mid x)\big)
-= \mathbb{E}_{y\sim\pi_\theta}\Big[\sum_t \log\pi_\theta(y_t\mid s_t) - \log\pi_T(y_t\mid s_t)\Big],
-\qquad s_t = (x, y_{<t}).
+\begin{aligned}
+J(\theta)
+&= \mathrm{KL}\big(\pi_\theta(\cdot\mid x)\,\|\,\pi_T(\cdot\mid x)\big) \\
+&= \mathbb{E}_{y\sim\pi_\theta}\Big[
+\sum_t\log\pi_\theta(y_t\mid s_t) \\
+&\qquad\qquad-\sum_t\log\pi_T(y_t\mid s_t)\Big], \\
+&\hspace{2em} s_t=(x,y_{<t}).
+\end{aligned}
 $$
 
 What is actually implemented, in Thinking Machines' OPD blog post, MiMo-V2-Flash and the MOPD paper, G-OPD (Eq. 14), MOPD-Router (Eq. 1), and others, is REINFORCE with the per-token advantage
@@ -70,12 +75,14 @@ Let the target be any product of per-step factors $P^*(y) \propto \prod_t \phi(y
 Define the local normalizer $Z(s) = \sum_a \phi(a\mid s)$ and the locally normalized target $q(a\mid s) = \phi(a\mid s)/Z(s)$. Then (derivation: expand the log and regroup):
 
 $$
-\boxed{\;
-\mathrm{KL}(\pi_\theta\,\|\,P^*) =
-\mathbb{E}_{\pi_\theta}\Big[\sum_t \mathrm{KL}\big(\pi_\theta(\cdot\mid s_t)\,\|\,q(\cdot\mid s_t)\big)\Big]
-\;-\; \mathbb{E}_{\pi_\theta}\Big[\sum_t \log Z(s_t)\Big]
-\;+\; \log Z_{\text{seq}}
-\;}
+\boxed{
+\begin{aligned}
+\mathrm{KL}(\pi_\theta\,\|\,P^*)
+&= \mathbb{E}_{\pi_\theta}\!\Big[\sum_t
+\mathrm{KL}\big(\pi_\theta(\cdot\mid s_t)\,\|\,q(\cdot\mid s_t)\big)\Big] \\
+&\quad-\mathbb{E}_{\pi_\theta}\!\Big[\sum_t\log Z(s_t)\Big]
++\log Z_{\mathrm{seq}}.
+\end{aligned}}
 $$
 
 Differentiating this gives three pieces of the exact gradient:
@@ -162,7 +169,13 @@ $$
 The algorithm (Eq. 14) uses the per-token advantage with discount 0. Under discount 0, each state is pushed toward the *locally* normalized geometric mixture $q_\lambda \propto \pi_{\text{ref}}^{1-\lambda}\pi_T^{\lambda}$. A product of locally normalized tempered distributions is **not** the sequence-level tempered distribution. The gap is exactly term (iii), and here the local normalizer has a closed form:
 
 $$
-\log Z(s) = \log\sum_a \pi_T(a\mid s)^{\lambda}\,\pi_{\text{ref}}(a\mid s)^{1-\lambda} = (\lambda-1)\,D_\lambda\big(\pi_T(\cdot\mid s)\,\|\,\pi_{\text{ref}}(\cdot\mid s)\big),
+\begin{aligned}
+\log Z(s)
+&= \log\sum_a \pi_T(a\mid s)^{\lambda}
+\pi_{\text{ref}}(a\mid s)^{1-\lambda} \\
+&= (\lambda-1)D_\lambda\big(
+\pi_T(\cdot\mid s)\,\|\,\pi_{\text{ref}}(\cdot\mid s)\big).
+\end{aligned}
 $$
 
 where $D_\lambda$ is the Rényi divergence of order $\lambda$. For $\lambda > 1$, Jensen's inequality gives $Z(s) = \mathbb{E}_{\pi_{\text{ref}}}[(\pi_T/\pi_{\text{ref}})^\lambda] \ge 1$. So the sequence-level objective contains a **non-negative per-state bonus** $(\lambda-1)D_\lambda$, which rewards steering into states where RL changed the teacher the most. The discount-0 implementation never sees it. At $\lambda = 1$ the term vanishes, which is why vanilla OPD is safe.

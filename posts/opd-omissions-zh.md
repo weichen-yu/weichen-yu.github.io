@@ -33,9 +33,14 @@ description: "讨论实际 on-policy distillation 中的两项近似：future cr
 OPD 声称要最小化的是 student 在自己的 rollout 上、到 teacher 的序列级 reverse KL：
 
 $$
-J(\theta) = \mathrm{KL}\big(\pi_\theta(\cdot\mid x)\,\|\,\pi_T(\cdot\mid x)\big)
-= \mathbb{E}_{y\sim\pi_\theta}\Big[\sum_t \log\pi_\theta(y_t\mid s_t) - \log\pi_T(y_t\mid s_t)\Big],
-\qquad s_t = (x, y_{<t}).
+\begin{aligned}
+J(\theta)
+&= \mathrm{KL}\big(\pi_\theta(\cdot\mid x)\,\|\,\pi_T(\cdot\mid x)\big) \\
+&= \mathbb{E}_{y\sim\pi_\theta}\Big[
+\sum_t\log\pi_\theta(y_t\mid s_t) \\
+&\qquad\qquad-\sum_t\log\pi_T(y_t\mid s_t)\Big], \\
+&\hspace{2em} s_t=(x,y_{<t}).
+\end{aligned}
 $$
 
 而 Thinking Machines 的 OPD 博客、MiMo-V2-Flash 和 MOPD 论文、G-OPD（Eq. 14）、MOPD-Router（Eq. 1）等实际实现的，是带逐 token advantage 的 REINFORCE：
@@ -70,12 +75,14 @@ $$
 定义局部归一化常数 $Z(s) = \sum_a \phi(a\mid s)$，以及局部归一化后的目标 $q(a\mid s) = \phi(a\mid s)/Z(s)$。把 log 展开、重新分组，可以得到：
 
 $$
-\boxed{\;
-\mathrm{KL}(\pi_\theta\,\|\,P^*) =
-\mathbb{E}_{\pi_\theta}\Big[\sum_t \mathrm{KL}\big(\pi_\theta(\cdot\mid s_t)\,\|\,q(\cdot\mid s_t)\big)\Big]
-\;-\; \mathbb{E}_{\pi_\theta}\Big[\sum_t \log Z(s_t)\Big]
-\;+\; \log Z_{\text{seq}}
-\;}
+\boxed{
+\begin{aligned}
+\mathrm{KL}(\pi_\theta\,\|\,P^*)
+&= \mathbb{E}_{\pi_\theta}\!\Big[\sum_t
+\mathrm{KL}\big(\pi_\theta(\cdot\mid s_t)\,\|\,q(\cdot\mid s_t)\big)\Big] \\
+&\quad-\mathbb{E}_{\pi_\theta}\!\Big[\sum_t\log Z(s_t)\Big]
++\log Z_{\mathrm{seq}}.
+\end{aligned}}
 $$
 
 对它求导，精确梯度分成三部分：
@@ -162,7 +169,13 @@ $$
 而算法（Eq. 14）用的是折扣为 0 的逐 token advantage。在折扣为 0 时，每个状态被推向**局部**归一化的几何混合 $q_\lambda \propto \pi_{\text{ref}}^{1-\lambda}\pi_T^{\lambda}$。但局部归一化的 tempered 分布连乘起来，**并不等于**序列级的 tempered 分布。两者的差恰好就是 (iii)，而这里的局部归一化常数有闭式解：
 
 $$
-\log Z(s) = \log\sum_a \pi_T(a\mid s)^{\lambda}\,\pi_{\text{ref}}(a\mid s)^{1-\lambda} = (\lambda-1)\,D_\lambda\big(\pi_T(\cdot\mid s)\,\|\,\pi_{\text{ref}}(\cdot\mid s)\big),
+\begin{aligned}
+\log Z(s)
+&= \log\sum_a \pi_T(a\mid s)^{\lambda}
+\pi_{\text{ref}}(a\mid s)^{1-\lambda} \\
+&= (\lambda-1)D_\lambda\big(
+\pi_T(\cdot\mid s)\,\|\,\pi_{\text{ref}}(\cdot\mid s)\big).
+\end{aligned}
 $$
 
 其中 $D_\lambda$ 是 $\lambda$ 阶 Rényi 散度。$\lambda > 1$ 时，由 Jensen 不等式 $Z(s) = \mathbb{E}_{\pi_{\text{ref}}}[(\pi_T/\pi_{\text{ref}})^\lambda] \ge 1$。所以序列级目标里包含一个**逐状态的非负奖励** $(\lambda-1)D_\lambda$，鼓励 student 走向 RL 对 teacher 改动最大的那些状态。折扣为 0 的实现完全看不到它。$\lambda = 1$ 时这一项消失，这就是标准 OPD 没问题的原因。
