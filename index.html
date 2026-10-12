@@ -60,6 +60,26 @@
 				.about-profile p{
 					margin-bottom:0.5em;
 				}
+				.profile-links{
+					display:flex;
+					align-items:center;
+					justify-content:center;
+					gap:0.9em;
+					margin:0.9em 0 0;
+				}
+				.profile-links li{
+					padding:0;
+				}
+				.profile-links a{
+					border-bottom:0;
+					font-size:1.2em;
+				}
+				.profile-links .scholar-icon{
+					display:block;
+					width:1.05em;
+					height:1.05em;
+					object-fit:contain;
+				}
 				.about-content{
 					flex:1;
 					min-width:0;
@@ -238,6 +258,12 @@
 										<img src="images/photo_id.jpg" alt="Weichen Yu" />
 										<h2>Weichen Yu</h2>
 										<p>wyu3@andrew.cmu.edu</p>
+										<ul class="icons profile-links" aria-label="Professional profiles">
+											<li><a href="mailto:wyu3@andrew.cmu.edu" class="icon solid fa-envelope" title="Email"><span class="label">Email</span></a></li>
+											<li><a href="https://scholar.google.com/citations?user=LeCleC4AAAAJ&amp;hl=en&amp;sortby=pubdate" target="_blank" rel="noopener" title="Google Scholar"><img class="scholar-icon" src="images/googlescholar.jpeg" alt="Google Scholar" /></a></li>
+											<li><a href="https://orcid.org/0009-0003-7935-2358" class="icon brands fa-orcid" target="_blank" rel="noopener" title="ORCID"><span class="label">ORCID</span></a></li>
+											<li><a href="https://www.linkedin.com/in/weichen-yu-8672a628a" class="icon brands fa-linkedin-in" target="_blank" rel="noopener" title="LinkedIn"><span class="label">LinkedIn</span></a></li>
+										</ul>
 									</section>
 									<div class="about-content">
 										<header>
@@ -1441,20 +1467,6 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 									<li><a href="#" class="button">Learn More</a></li>
 								</ul>
 							</section>-->
-
-						<!-- Footer -->
-							<section id="footer">
-								<ul class="icons">
-									<!--<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-									<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-									<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li> 
-									<li><a href="#" class="icon solid fa-rss"><span class="label">RSS</span></a></li> -->
-									<li><a href="mailto:bearcookiesgogo@gmail.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
-									<li><a href="https://scholar.google.com/citations?user=LeCleC4AAAAJ&hl=en&sortby=pubdate"><span><img src="images/googlescholar.jpeg" width="5%" /></span></a></li>
-									<li><a href="https://orcid.org/0009-0003-7935-2358" class="icon brands fa-orcid" target="_blank" rel="noopener" title="ORCID"><span class="label">ORCID</span></a></li>
-								</ul>
-								
-							</section>
 
 							<!--<section id="footer">
 								<table width="30%" align="center" border="0" cellspacing="0" cellpadding="20">
