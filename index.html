@@ -157,6 +157,26 @@
 					.safety-thought{margin-left:calc(190px + 2.5em)}
 				}
 				@media screen and (max-width: 736px){
+					.paper{
+						flex-direction:column;
+						align-items:stretch;
+						gap:1em;
+					}
+					.paper .pimg{
+						width:100%;
+						padding-left:0 !important;
+					}
+					.paper .pimg img{
+						display:block;
+						width:100%;
+						max-width:300px;
+						height:auto;
+						margin:0 auto;
+						object-fit:contain;
+					}
+					.paper .pcontent{
+						width:100%;
+					}
 					.about-layout{
 						flex-direction:column;
 					}
@@ -340,6 +360,28 @@
 								<div id="research-list-topic">
 									<p> </p>
 								<h3 style="margin:0 0 0.6em 0;">LLM / Agent performance</h3>
+								<p> </p>
+								<div class="paper" data-topic="LLM Agent performance" data-date="2026-10" style="clear:left;">
+									<div class="pimg" style="float:left;margin-bottom:30px;padding-left:3px;border-bottom:solid 1px #EEE;box-shadow:0 0px 2px">
+										<img src="images/harmony_harness.png" width="300" height="150" alt="Overview of the Harmony Harness framework" />
+									</div>
+									<div class="pcontent">
+										<div class="ptitle" style="padding:1px;margin-left:315px;">
+											Harmony Harness: Multi-Objective Self-Evolution of Agent Harnesses
+										</div>
+										<div class="pauthors" style="padding:1px;margin-left:315px;">
+											<b>Weichen Yu</b>, Lesly Miculicich, Bhavana Dalvi Mishra, Jiefeng Chen, Shuo Li, Matt Fredrikson, Tomas Pfister, Long T. Le.
+										</div>
+										<div class="pvenue" style="padding:1px;margin-left:315px;">
+											<p>[<a href="assets/pdfs/Harmony_Harness.pdf" target="_blank" rel="noopener">paper</a>]</p>
+										</div>
+										<div class="ptldr" style="padding:1px;margin-left:315px;margin-top:-6px;">
+											<b>TL;DR:</b> Multi-objective evolution of agent harnesses for stronger safety, functionality, and transfer.
+										</div>
+									</div>
+								</div>
+								<p> </p>
+								<p> </p>
 								<p> </p>
 								<div class="paper" data-topic="LLM Agent performance" data-date="2026-01" style="clear:left;">
 									<div class="pimg" style="float:left;margin-bottom:30px;padding-left:3px;border-bottom:solid 1px #EEE;box-shadow:0 0px 2px">
