@@ -1,0 +1,67 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]: A closer look at weight-space programming
+  - heading "What may actually be happening" [level=1] [ref=e3]
+  - table [ref=e6]:
+    - rowgroup [ref=e12]:
+      - row [ref=e13]:
+        - columnheader "Experiment" [ref=e14]
+        - columnheader "What the blog claims" [ref=e15]
+        - columnheader "What it actually does" [ref=e16]
+        - columnheader "What it really relies on" [ref=e17]
+    - rowgroup [ref=e18]:
+      - row [ref=e19]:
+        - cell "1 Identify the game" [ref=e20]:
+          - generic [ref=e21]: "1"
+          - text: Identify the game
+        - cell "Recognizes the game from weights alone" [ref=e22]
+        - cell "Reads which input positions’ weights were trained" [ref=e23]
+        - cell "Unused inputs keep their initial weights; the meanings of inputs and outputs are known" [ref=e24]
+      - row [ref=e25]:
+        - cell "2 Identify diffusion output" [ref=e26]:
+          - generic [ref=e27]: "2"
+          - text: Identify diffusion output
+        - cell "Recognizes the generated shape from weights alone" [ref=e28]
+        - cell "Reads single units’ output weights as small images" [ref=e29]
+        - cell "Right shape, but read as a hollow outline" [ref=e30]
+      - row [ref=e31]:
+        - cell "3 Corpus and head labels" [ref=e32]:
+          - generic [ref=e33]: "3"
+          - text: Corpus and head labels
+        - cell "Understands the network from its middle layers alone" [ref=e34]
+        - cell "Textbook QK/OV/composition analysis" [ref=e35]
+        - cell "Copy heads are exactly what this method handles best" [ref=e36]
+      - row [ref=e37]:
+        - cell "4 Fix the car" [ref=e38]:
+          - generic [ref=e39]: "4"
+          - text: Fix the car
+        - cell "Diagnoses the failure, then repairs the network" [ref=e40]
+        - cell "Hand-writes a controller next to the original network that takes over" [ref=e41]
+        - cell "Physical intuition plus logic gates; the original network is largely bypassed" [ref=e42]
+      - row [ref=e43]:
+        - cell "5 Write MinAtar nets" [ref=e44]:
+          - generic [ref=e45]: "5"
+          - text: Write MinAtar nets
+        - cell "Writes working networks from scratch, no training" [ref=e46]
+        - cell "Derives policies from the game source code, then compiles them into weights" [ref=e47]
+        - cell "Exact hand calculation; the policies take shortcuts, and Breakout hits the step cap" [ref=e48]
+      - row [ref=e49]:
+        - cell "6 Write a Go net" [ref=e50]:
+          - generic [ref=e51]: "6"
+          - text: Write a Go net
+        - cell "Writes a network that beats PPO" [ref=e52]
+        - cell "Hand-writes a rule engine, then tunes it through repeated games" [ref=e53]
+        - cell "Test-driven iteration; the opponents are weak" [ref=e54]
+      - row [ref=e55]:
+        - cell "7 Find the sycophant" [ref=e56]:
+          - generic [ref=e57]: "7"
+          - text: Find the sycophant
+        - cell "Identifies which model agrees with the user" [ref=e58]
+        - cell "Fails with weights alone; succeeds once the attention tool lets it compare activations" [ref=e59]
+        - cell "Right model, but the components it named failed the causal check" [ref=e60]
+      - row [ref=e61]:
+        - cell "8 Improve math" [ref=e62]:
+          - generic [ref=e63]: "8"
+          - text: Improve math
+        - cell "Edits weights to improve math" [ref=e64]
+        - cell "Difference of means finds a “repetition” direction, then an overshooting ablation removes it" [ref=e65]
+        - cell "It fixed a looping failure, not math ability; no effect on Gemma" [ref=e66]
