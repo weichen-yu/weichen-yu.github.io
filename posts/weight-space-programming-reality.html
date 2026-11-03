@@ -1,0 +1,250 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <title>What Weight-Space Programming Is Actually Doing | Weichen Yu</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <meta name="description" content="A close reading of eight weight-space programming experiments: what was read from weights, what was compiled into them, and what was really improved." />
+        <link rel="stylesheet" href="../assets/css/main.css" />
+        <style>
+            html, body, #wrapper { max-width: 100%; overflow-x: clip; }
+            #main { max-width: 1180px; margin: 0 auto; }
+            .article-post { padding: 4em 5em; }
+            .post-body { color: #3c3b3b; font-size: 1.02em; line-height: 1.8; }
+            .post-body h1 { font-size: 2.15em; line-height: 1.3; margin-bottom: 0.45em; }
+            .post-body h2 { border-top: 1px solid rgba(160,160,160,.3); margin-top: 2.4em; padding-top: 1.6em; }
+            .post-body h3 { margin-top: 2em; }
+            .post-body table { display: block; max-width: 100%; overflow-x: auto; }
+            .post-body th, .post-body td { min-width: 9em; vertical-align: top; }
+            .post-body blockquote { background: rgba(160,160,160,.075); padding: 1.2em 1.5em; }
+            @media screen and (max-width: 736px) {
+                .article-post { padding: 2em 1.4em; }
+                .post-body { font-size: .98em; }
+                .post-body h1 { font-size: 1.6em; }
+            }
+        </style>
+    </head>
+    <body class="single is-preload">
+        <div id="wrapper">
+            <header id="header">
+                <h1><a href="../index.html">Home</a></h1>
+                <nav class="links">
+                    <ul>
+                        <li><a href="../education.html">Education</a></li>
+                        <li><a href="../index.html#nnl">Research</a></li>
+                        <li><a href="../posts.html">Posts</a></li>
+                    </ul>
+                </nav>
+                <nav class="main">
+                    <ul><li class="menu"><a class="fa-bars" href="#menu">Menu</a></li></ul>
+                </nav>
+            </header>
+            <section id="menu">
+                <section>
+                    <ul class="links">
+                        <li><a href="../index.html"><h3>Home</h3></a></li>
+                        <li><a href="../education.html"><h3>Education</h3></a></li>
+                        <li><a href="../index.html#nnl"><h3>Research</h3></a></li>
+                        <li><a href="../posts.html"><h3>Posts</h3></a></li>
+                    </ul>
+                </section>
+            </section>
+            <div id="main">
+                <article class="post article-post">
+                    <div class="post-body">
+<h1>What Weight-Space Programming Is Actually Doing</h1>
+<p><em>Weichen Yu · November 2, 2026 · <a href="weight-space-programming-reality-zh.html">中文版</a></em></p>
+<blockquote>
+<p><strong>Status.</strong> Research notes, not peer-reviewed. I checked the public experiment logs and evaluation artifacts linked below. Throughout this post, <strong>Verified</strong> means that a claim can be confirmed by running the released code or reading the logs and eval files; <strong>Astra</strong> means it is Astra&#39;s own explanation in the logs; <strong>Inference</strong> means it is my interpretation of the evidence.</p>
+</blockquote>
+<p><em>Thanks also to <a href="https://forrest-110.github.io/">Yifei Zhang</a>, <a href="https://www.cylab.cmu.edu/directory/bios/pasareanu-corina.html">Corina Pasareanu</a>, and <a href="https://ravimangal.github.io/">Ravi Mangal</a> for discussions.</em></p>
+<p>The new post <a href="https://rikiyat.github.io/blog/weight-space-programming/"><em>Sparks of Weight-Space Programming</em></a> makes a striking claim: a frontier LLM can read, write, and repair neural networks directly in weight space. The authors also released unusually complete <a href="https://github.com/RikiyaT/lm_understand-logs">experiment logs</a>, which makes it possible to ask a more precise question than “does it work?”</p>
+<p><strong>What may be actually happening:</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>Exp</strong></th>
+<th><strong>What the blog claims</strong></th>
+<th><strong>What it actually does</strong></th>
+<th><strong>What it really relies on</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1 Identify the game</td>
+<td>Recognizes the game from weights alone</td>
+<td>Reads which input positions&#39; weights were trained</td>
+<td>Unused inputs keep their initial weights; the meanings of inputs and outputs are known</td>
+</tr>
+<tr>
+<td>2 Identify diffusion output</td>
+<td>Recognizes the generated shape from weights alone</td>
+<td>Reads single units&#39; output weights as small images</td>
+<td>Right shape, but read as a hollow outline</td>
+</tr>
+<tr>
+<td>3 Corpus and head labels</td>
+<td>Understands the network from its middle layers alone</td>
+<td>Textbook QK/OV/composition analysis</td>
+<td>Copy heads are exactly what this method handles best</td>
+</tr>
+<tr>
+<td>4 Fix the car</td>
+<td>Diagnoses the failure, then repairs the network</td>
+<td>Hand-writes a controller next to the original network that takes over</td>
+<td>Physical intuition plus logic gates; the original network is largely bypassed</td>
+</tr>
+<tr>
+<td>5 Write MinAtar nets</td>
+<td>Writes working networks from scratch, no training</td>
+<td>Derives policies from the game source code, then compiles them into weights</td>
+<td>Exact hand calculation; the policies take shortcuts, and Breakout hits the step cap</td>
+</tr>
+<tr>
+<td>6 Write a Go net</td>
+<td>Writes a network that beats PPO</td>
+<td>Hand-writes a rule engine, then tunes it through repeated games</td>
+<td>Test-driven iteration; the opponents are weak</td>
+</tr>
+<tr>
+<td>7 Find the sycophant</td>
+<td>Identifies which model agrees with the user</td>
+<td>Fails with weights alone; succeeds once the attention tool lets it compare activations</td>
+<td>Right model, but the components it named failed the causal check</td>
+</tr>
+<tr>
+<td>8 Improve math</td>
+<td>Edits weights to improve math</td>
+<td>Difference of means finds a “repetition” direction, then an overshooting ablation removes it</td>
+<td>It fixed a looping failure, not math ability; no effect on Gemma</td>
+</tr>
+</tbody></table>
+<p>There are three kinds of experiment:</p>
+<ul>
+<li><strong>Read</strong> (1, 2, 3, 7): known mechanistic-interpretability tricks, or structure in the data. Questions that depend on what a direction <em>means</em> need activations.</li>
+<li><strong>Write</strong> (4, 5, 6): not understanding an existing network so much as writing a program and compiling it into weights.</li>
+<li><strong>Edit</strong> (8): standard steering or ablation that fixes an obvious failure.</li>
+</ul>
+<p>None of these methods is new. What is new is that an LLM can carry them out autonomously—and that several of the experiments were completed in a single reply with no tools. That is a real result. It is just a different result from the most dramatic reading of “LLMs can natively understand neural-network weights.”</p>
+<hr>
+<h2>1. Read: when the answer is visible in weight structure</h2>
+<h3>Experiment 1: the game is a map of where training happened</h3>
+<p>Four PPO policies have the same 500→32→32→5 architecture. Each was trained on a 10×10 version of Breakout, Pong, Pac-Man, or Freeway. Astra received all 17,253 weights as text, together with the meaning of every input cell, input channel, and output action. It named all four games correctly in a single tool-free reply.</p>
+<p>That sounds like behavior was recovered from weights alone. The simpler explanation is that the first layer records <strong>which inputs ever received gradient updates</strong>.</p>
+<p>The released weights make this visible. Inputs the game never uses have row norms around 0.3–0.4, matching the initialization scale and the network-wide median of 0.39. Inputs that matter have norms from 3 to 17. In Breakout, only row 8 lights up in the agent channel: a bottom paddle. In Pong, the agent channel occupies column 1: a side paddle. In Freeway, the moving-object channel repeats every four columns: traffic lanes. The dark cells in Pac-Man reproduce the maze Astra drew.</p>
+<p>The mechanism is nearly forced. If an input is always zero, the gradient on its outgoing weights is zero, so those weights remain at initialization. The norm map is therefore a map of where objects can occur. Since the prompt also supplies the semantics of the channels and actions, Astra is solving a strong pattern-recognition problem, not recovering unknown semantics from an arbitrary tensor.</p>
+<p>This is still impressive long-context perception: each correct answer took fewer than 1,100 reasoning tokens over a long list of numbers. But the experiment does not establish a general ability to infer a policy&#39;s behavior from weights.</p>
+<h3>Experiment 2: units really can be viewed as tiny images</h3>
+<p>The diffusion models are small MLP denoisers that generate 12×12 circles, squares, or triangles. Astra was forbidden from running—or mentally simulating—the sampler. It instead reshaped individual hidden units&#39; input and output weights into 12×12 images. Square units contain vertical and horizontal strips; triangle units contain sloped sides and a base; corner biases identify the background.</p>
+<p>This worked: 3/3 shapes were identified. But Astra drew all three as hollow outlines even though the evaluation samples are filled shapes.</p>
+<p>The error is revealing. Across the three models, only 2–3% of positive pixels in an individual output template are surrounded by other positive pixels. Nearly every unit is an edge or a strip. The filled object emerges only when many templates are added. Astra read the parts correctly and failed to compose them. So the result supports a modest claim—single-unit output weights contain visually interpretable features—more strongly than the broad claim that the model understood the diffusion process.</p>
+<h3>Experiment 3: a textbook case for QK/OV analysis</h3>
+<p>The third experiment removes the embedding and output layers from three character-level transformers trained on Python, romanized Japanese, or English. Astra uses the standard toolkit: QK and OV matrices, singular values, effective ranks, K-composition scores, and eigenvalue phases for positional offsets.</p>
+<p>The results are strong. Across six independent runs, it identifies the training corpus every time. It also finds every induction head under the authors&#39; threshold with no false positives or false negatives. In each run, the one head it labels “previous” is the model&#39;s highest-scoring previous-token head.</p>
+<p>But this is precisely the case classical mechanistic interpretability is designed for. Induction heads are built from a previous-token head composing with a later matching head, and QK/OV composition exposes that circuit unusually well. Most other heads are left “unclear”—between 4 and 21 of 24 depending on the run. The experiment shows competent autonomous use of established analysis, not a new way to decode arbitrary middle-layer weights.</p>
+<h3>Experiment 7: semantics require a reference frame</h3>
+<p>The cleanest negative result is the sycophancy experiment. Astra receives two Gemma 3 270M models: one trained to answer honestly and one trained to accept the user&#39;s suggested answer. Their embeddings and output layers are frozen.</p>
+<p>With weights alone, Astra fails in four attempts. It can locate where the models differ, especially around MLPs 15–17, but it cannot tell which difference means “follow the user.” In its own words, no calculation establishes which direction represents the user&#39;s guess.</p>
+<p>Once given a tool that returns attention patterns on prompts it writes, Astra succeeds on all three pairs. For one pair, head 10.2 in the honest model places 94.3% of its attention on the question&#39;s numbers; in the sycophant, 85.7% goes to the user&#39;s proposed answer. Activations give the difference a semantic reference frame.</p>
+<p>Even then, localization fails the authors&#39; causal patching test. Copying Astra&#39;s ten named components from the honest model into the sycophant closes none of the behavior gap and less of the logit-margin gap than random components on average. Astra identifies the right model from activation differences, but its story about <em>where the behavior lives</em> remains correlational.</p>
+<p>This may be the most important boundary in the whole set of experiments: weights reveal structure and differences, but a direction&#39;s meaning usually comes from what activates it.</p>
+<hr>
+<h2>2. Write: programming a neural network is not interpreting one</h2>
+<h3>Experiment 4: the “repair” is a bypass controller</h3>
+<p>The Kinetix car policy has to reverse for a run-up, accelerate left across a strip, and hit a box. A PPO policy trained for one billion steps never succeeds. Given the scene, the weights, and one failed trajectory, Astra changes 3.5% of the weights and reaches 1,024/1,024 reported successes.</p>
+<p>Its diagnosis is sensible: the policy never reverses and stalls at x = 2.00. But the patch does not repair the learned computation. It reserves a few units, isolates them by zeroing thousands of connections, and installs a new controller:</p>
+<ul>
+<li>threshold the car&#39;s x position and velocity;</li>
+<li>combine six thresholds with large-weight ReLU logic gates;</li>
+<li>output huge logit offsets for “reverse” or “drive left”;</li>
+<li>hand control back to the original network after crossing the strip.</li>
+</ul>
+<p>Only about 50 of the 6,073 changed weights carry meaningful new values. Most changes isolate the bypass, and several original units are deleted in the process. The bypass controls the trajectory until step 64; after that, momentum and the original policy finish the task.</p>
+<p>This is not a criticism of the engineering. Inferring good physical thresholds in one shot, without a simulator, is arguably the most impressive single-reply result in the post. But the mechanism is <strong>program synthesis plus compilation into weights</strong>, not a surgical correction derived from understanding the original network.</p>
+<p>One evaluation caveat also matters: all 1,024 successes have exactly the same episode length and return. They are very likely repeats of one deterministic trajectory rather than 1,024 independent conditions.</p>
+<h3>Experiment 5: source code in, exact policy tables out</h3>
+<p>For Breakout, Seaquest, and Asterix, Astra starts from all-zero 600→32→32→6 networks. The prompt includes each game&#39;s complete source code. No training or rollouts are allowed.</p>
+<p>The Breakout network contains 360 hand-calculated lookup entries: four tables covering rising or falling motion to the left or right, with a predicted landing column for each ball position. Every entry matches the game code, including wall bounces and awkward edge cases. A second layer compares the predicted landing point to the paddle and chooses left or right.</p>
+<p>The policy never reads the brick channel. Its score of 517.4 is partly a ceiling effect: long episodes hit the 10,000-step limit, and with sticky actions disabled it never misses the ball. It is excellent at the narrow policy Astra chose to compile, but it did not learn the game in the usual sense.</p>
+<p>The shortcuts are clearer in the other games. The Seaquest policy stays in its starting column, always fires left, and moves only vertically. It ignores the trail channel, so it cannot infer enemy direction; 57 of 60 inspected episodes end in collision. The Asterix policy reads the player only in column 5 and hard-disables left, right, and fire with logits of −1000.</p>
+<p>These are clever handwritten programs. Comparing them directly with PPO is informative about how weak or inefficient the PPO baselines can be, but it is not evidence that weight-space reasoning replaces learning in general.</p>
+<h3>Experiment 6: a rule engine, then test-driven tuning</h3>
+<p>The zero-pass Go network is even more explicit. A 336-line Python program fills 1.48 million weights, only 2.3% of them nonzero. The resulting six-layer MLP acts like a hand-wired local convolutional system: count liberties, certify that groups have at least two distinct liberties, propagate certificates a few steps, mark unsafe stones, and score captures, rescues, eyes, and self-atari. Exact symmetry is built in.</p>
+<p>That is a substantial piece of neural program synthesis. It also has a known structural limit: group information travels only three steps, so long connected groups can be misclassified.</p>
+<p>The 50-forward-pass result is less “from scratch” than the headline suggests. Astra iterates through 26 versions: change rules, play roughly 128 games, analyze records, and revise. Only one pass inspects hidden activations. The rest is ordinary test-driven development in which the program happens to be encoded in weights. The final 20 passes make no changes and serve as validation.</p>
+<p>The opponents are also weak. The hidden PPOs are tiny 32×32 networks, and even the same-size PPO baseline wins only 48–76% against them after tuning. With about 96 practice games per pass, many keep-or-revert decisions sit within several percentage points of sampling noise.</p>
+<p>The result is still interesting: an LLM can express a nontrivial Go heuristic system as a fixed neural network and improve it through game feedback. It does not demonstrate that the LLM understood a trained Go network or discovered a novel weight-space optimization method.</p>
+<hr>
+<h2>3. Edit: removing a failure mode is not adding an ability</h2>
+<h3>Experiment 8: the math gain is mostly a loop fix</h3>
+<p>Qwen3.5-0.8B initially solves 7.9% of MATH-500 and 13.8% of GSM8K under the reported evaluation. In the practice set, 85 of 96 answers run to the token limit while repeating sentences. Astra constructs four matched pairs of productive and repetitive continuations, averages the final hidden states, and takes their normalized difference. It does this at two residual-stream locations, after layers 16 and 20.</p>
+<p>It then selects the 64 MLP neurons whose output weights align most strongly with each direction and edits the corresponding matrices. The operation is a sparse directional ablation with coefficient 6. A true projection removal would use coefficient 1, so this deliberately overshoots.</p>
+<p>After the edit, MATH-500 reaches 48.1% and GSM8K 67.1%. That is a large and useful improvement. But the causal story is narrower than “editing weights to improve math.” Difference of means is a standard representation-engineering technique; the edit removes a repetition direction that was preventing the model from completing answers. It reveals capability the base model already had rather than writing new mathematical knowledge or reasoning machinery into the weights.</p>
+<p>The Gemma follow-up supports this interpretation. Gemma 3 270M rarely loops, and the same process moves MATH-500 only from 6.8% to at most 7.6%. When the failure mode is absent, the method does not create math ability.</p>
+<p>The smaller-budget runs reinforce the point. One removes a loop direction from 30 matrices; another switches off a single attention head. These are familiar steering and ablation operations, chosen autonomously and applied effectively.</p>
+<hr>
+<h2>4. What is actually new</h2>
+<p>It would be easy to overcorrect and dismiss these experiments because each one has a conventional description. That would miss the main result.</p>
+<p>The novelty is not a new interpretability primitive or optimizer. It is the <strong>integration layer</strong>:</p>
+<ol>
+<li>Astra reads a natural-language task, architecture, source code, raw tensors, and evaluation traces.</li>
+<li>It chooses an analysis that fits the structure: norms, image-like templates, QK/OV composition, logic circuits, lookup tables, local Go rules, activation differences.</li>
+<li>It converts the analysis into exact numerical weights.</li>
+<li>When feedback is available, it debugs the resulting program.</li>
+</ol>
+<p>Humans already know each ingredient. What humans usually do not do is read 17,000 numbers in a prompt, notice a maze in their norms, or emit hundreds of correct constants for a neural lookup table in one reply. The surprising capability is breadth, numerical reliability, and low interaction cost.</p>
+<p>That suggests a more grounded name for the emerging practice: <strong>LLM-assisted neural program synthesis and model surgery</strong>. “Weight-space programming” is a good umbrella term as long as “programming” is taken literally. Much of the writing work is exactly that: derive an algorithm in a human-readable representation, then compile it into matrix operations.</p>
+<p>The experiments also expose a useful hierarchy of difficulty:</p>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>What makes it possible</th>
+<th>What remains hard</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Read structure</td>
+<td>sparsity, geometry, known input/output semantics</td>
+<td>assigning meaning to arbitrary directions</td>
+</tr>
+<tr>
+<td>Read mechanisms</td>
+<td>known circuit motifs and compositional algebra</td>
+<td>causal localization in large models</td>
+</tr>
+<tr>
+<td>Write behavior</td>
+<td>exact environment code and architectures expressive enough for logic</td>
+<td>robustness beyond the encoded shortcuts</td>
+</tr>
+<tr>
+<td>Edit failures</td>
+<td>paired activations and an obvious pathological mode</td>
+<td>adding capability that is not already present</td>
+</tr>
+</tbody></table>
+<p>Future benchmarks should separate these cases. Hide input semantics. Randomly rotate internal representations. Test on inputs outside the handcrafted policy&#39;s support. Evaluate causal localization, not just correlation. Compare against small program synthesizers and standard representation-engineering baselines. And for iterative experiments, report how much performance comes from feedback rather than the initial weight construction.</p>
+<p>The strongest conclusion supported today is therefore both narrower and, in some ways, more interesting than the headline:</p>
+<blockquote>
+<p>A frontier LLM can autonomously recognize exploitable structure in weights, apply established interpretability tools, synthesize programs as neural-network parameters, and perform useful activation-guided surgery. It does not yet show general semantic understanding of weights—but it can already make weight-space methods dramatically easier to execute.</p>
+</blockquote>
+<p>That is not magic. It is a new interface to a collection of techniques we already had. Interfaces can change fields.</p>
+<hr>
+<h2>Sources</h2>
+<ul>
+<li>Rikiya Takehi, Jayden Teoh, Alex Zhang, and Omar Khattab. <a href="https://rikiyat.github.io/blog/weight-space-programming/"><em>Sparks of Weight-Space Programming: LLMs can natively read &amp; write neural network weights</em></a>, November 2, 2026.</li>
+<li>Rikiya Takehi et al. <a href="https://github.com/RikiyaT/lm_understand-logs">Complete experiment logs and evaluation artifacts</a>.</li>
+</ul>
+                    </div>
+                </article>
+            </div>
+        </div>
+        <script src="../assets/js/jquery.min.js"></script>
+        <script src="../assets/js/browser.min.js"></script>
+        <script src="../assets/js/breakpoints.min.js"></script>
+        <script src="../assets/js/util.js"></script>
+        <script src="../assets/js/main.js"></script>
+        <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"c8be6e5ff54947dbadfede7d4b1fc474"}'></script>
+    </body>
+</html>
+
