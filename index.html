@@ -205,6 +205,13 @@
 					color: #2ebaae !important;
 					background-color: rgba(46, 186, 174, 0.05);
 				}
+
+				#demo { scroll-margin-top: 5em; }
+				.demo-figure { margin: 0; max-width: 960px; }
+				.demo-video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; border-radius: 8px; background: #f7f3ea; }
+				.demo-caption { margin-top: 1.2em; font-size: 0.95em; line-height: 1.7; }
+				.demo-caption p { margin: 0 0 0.65em; }
+				.demo-caption .demo-note { color: #646464; font-size: 0.9em; }
 		</style>
 	</head>
 	<body class="is-preload">
@@ -218,6 +225,7 @@
 						<nav class="links">
 							<ul>
 								<li><a href="education.html">Education</a></li>
+								<li><a href="#demo">Demo</a></li>
 								<li><a href="#nnl">Research</a></li>
 								<li><a href="posts.html">Posts</a></li>
 						<!--	<li><a href="#">Feugiat</a></li>
@@ -256,6 +264,7 @@
 									<li>
 										<h3>Works</h3>
 											<a href="#nnl">Research</a>
+											<a href="#demo">Demo</a>
 											<a href="#vln">Challenge</a>
 										
 									</li>
@@ -337,6 +346,23 @@
 									</ul>
 								</footer>-->
 							</article>
+							<section class="post" id="demo" aria-labelledby="demo-title">
+								<header>
+									<div class="title"><h2 id="demo-title">Demo</h2></div>
+								</header>
+								<figure class="demo-figure">
+									<video class="demo-video" controls playsinline preload="metadata" width="1280" height="720" poster="images/infecting-llm-agents-demo.jpg" aria-label="Eight robot agents demonstrate a self-propagating adversarial attack" aria-describedby="demo-caption">
+										<source src="assets/videos/infecting-llm-agents-demo.mp4" type="video/mp4" />
+										Your browser does not support embedded video. <a href="assets/videos/infecting-llm-agents-demo.mp4">Download the demo (MP4)</a>.
+									</video>
+									<figcaption class="demo-caption" id="demo-caption">
+										<p><strong>Infecting LLM Agents via Generalizable Adversarial Attack</strong><br />
+										Weichen Yu, Kai Hu, Tianyu Pang, Chao Du, Min Lin, and Matt Fredrikson.<br />
+										Red Teaming GenAI Workshop @ NeurIPS 2024 &middot; <strong>Oral</strong> &middot; <a href="https://openreview.net/forum?id=udsmFGMwlp" target="_blank" rel="noopener">Paper</a></p>
+										<p class="demo-note">An animated illustration of one initial intervention spreading through messages and memory across eight LLM agents. Adapted from the paper&rsquo;s six-round example; outcomes depend on the model and context. 44 seconds &middot; English.</p>
+									</figcaption>
+								</figure>
+							</section>
 							<article class="post">
 								<header>
 									<div class="title" id="nnl">
